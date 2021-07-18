@@ -1,4 +1,4 @@
-# Typito
+# Image Processing
 Upload and Search Upload Images with tags ,description API's Nodejs
 
 Features of API Should be:
