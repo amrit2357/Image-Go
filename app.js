@@ -29,6 +29,18 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyparser.urlencoded({ extended : true }));
 
 app.use('/' , routes);
+app.set('view engine', 'ejs');
+
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://amrit:1234@cluster0.8fcf6.mongodb.net/cluster0?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  console.log(collection);
+  console.log('database connected');
+  client.close();
+});
+
 app.listen(3000, () => {
     console.log(`server is running on ${app.get('port')}`);
 });
@@ -37,6 +49,8 @@ module.exports = {
     app,
     express
 };
+
+
 
 
 
